@@ -11,6 +11,7 @@
     "tests:chrome": "playwright test --config=playwright.config.ts --project=chromium",
     "tests:firefox": "playwright test --config=playwright.config.ts --project=firefox",
     "tests:webkit": "playwright test --config=playwright.config.ts --project=webkit",
+    
     "tests:e2e_zero": "playwright test --config=e2e_zerowebapp.config.ts --project=chromium",
     "tests:e2e_para": "playwright test --config=e2e_parabank.config.ts --project=chromium"
   },

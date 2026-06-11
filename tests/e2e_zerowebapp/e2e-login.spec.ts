@@ -3,7 +3,7 @@ import { LoginPage } from '../../page-objects/LoginPage';
 import { HomePage } from '../../page-objects/HomePage';
 
 
-test.describe.parallel.only('Zero Web App Login Tests', () => {
+test.describe.parallel('Zero Web App Login Tests', () => {
    let loginPage: LoginPage;
    let homePage: HomePage;
    
@@ -14,7 +14,7 @@ test.describe.parallel.only('Zero Web App Login Tests', () => {
 
         await homePage.visit();
     })
-
+ 
     test('Negative Login', async ({ page }) => {
        await homePage.clickSignIn();
        await loginPage.login('randomuser', 'randompassword');

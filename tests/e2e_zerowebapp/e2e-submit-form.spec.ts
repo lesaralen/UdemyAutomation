@@ -1,55 +1,35 @@
 import { test, expect } from '@playwright/test'
-import { Locator } from '@playwright/test'
+import { HomePage } from '../../page-objects/HomePage';
+import { FeedbackPage } from '../../page-objects/FeedbackPage';
 
 
-    test.describe ("Feedback form", () => {
+    test.describe.only ("Feedback form", () => {
 
-        let nameInput: Locator;
-        let emailInput: Locator;
-        let subjectInput: Locator;
-        let commentInput: Locator;
-        let clearButton: Locator;
-        let submitButton: Locator;
+        let homePage: HomePage;
+        let feedbackPage: FeedbackPage;
 
         test.beforeEach(async ({ page }) => {
-            await page.goto('http://zero.webappsecurity.com/index.html');
-            await page.click('#feedback');
+            homePage = new HomePage(page);
+            feedbackPage = new FeedbackPage(page);
 
-            nameInput = page.getByRole('textbox', { name: 'Your Name' });
-            emailInput = page.getByRole('textbox', { name: 'Your email address' });
-            subjectInput = page.getByRole('textbox', { name: 'Subject' });
-            commentInput = page.locator('#comment');
-            clearButton = page.getByRole('button', { name: 'Clear' });
-            submitButton = page.getByRole('button', { name: 'Send Message' });
+            await homePage.visit();
+            await homePage.clickFeedbackLink();
+            await page.waitForURL('http://zero.webappsecurity.com/feedback.html');
         })
 
         // Reset feedback form
         test('Reset feedback form', async ({ page }) => {
-            await nameInput.fill('John Doe');
-            await emailInput.fill('john.doe@example.com');
-            await subjectInput.fill('Feedback Subject');
-            await commentInput.fill('This is a feedback comment for testing purposes.');
-
-            await clearButton.click();
-
-            await expect(nameInput).toBeEmpty();
-            await expect(emailInput).toBeEmpty();
-            await expect(subjectInput).toBeEmpty();
-            await expect(commentInput).toBeEmpty(); 
+            await feedbackPage.fillFeedbackForm('John Doe', 'john.doe@example.com', 'Feedback Subject', 'This is a feedback comment for testing purposes.');
+            await feedbackPage.resetFeedbackForm();
+            await feedbackPage.verifyFeedbackFormIsEmpty();
         })
 
 
         // Submit feedback form
         test('Submit feedback form', async ({ page }) => {
-            
-            await nameInput.fill('John Doe');
-            await emailInput.fill('john.doe@example.com');
-            await subjectInput.fill('Feedback Subject');
-            await commentInput.fill('This is a feedback comment for testing purposes.');
-
-            await submitButton.click();
-
-            await expect(page.locator('.offset3.span6')).toContainText('Thank you for your comments');
+            await feedbackPage.fillFeedbackForm('John Doe', 'john.doe@example.com', 'Feedback Subject', 'This is a feedback comment for testing purposes.');
+            await feedbackPage.submitFeedbackForm();
+            await feedbackPage.verifyFeedbackSubmission();
         })
 
 
