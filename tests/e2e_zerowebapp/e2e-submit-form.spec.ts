@@ -3,7 +3,7 @@ import { HomePage } from '../../page-objects/HomePage';
 import { FeedbackPage } from '../../page-objects/FeedbackPage';
 
 
-    test.describe.only ("Feedback form", () => {
+    test.describe ("Feedback form", () => {
 
         let homePage: HomePage;
         let feedbackPage: FeedbackPage;
