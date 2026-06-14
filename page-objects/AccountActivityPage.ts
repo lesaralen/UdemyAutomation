@@ -1,14 +1,16 @@
 import { expect, Locator, Page } from '@playwright/test';
+import { AbstractPage } from './AbstractPage';
 
-export class AccountActivityPage {
-    readonly page: Page;
+export class AccountActivityPage extends AbstractPage {
+    //readonly page: Page;
     readonly accountSelector: Locator;
     readonly transactionsTable: Locator;
     readonly noResultsMessage: Locator;
 
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
+        //this.page = page;
         this.accountSelector = page.getByRole('combobox', { name: 'Account' });
         this.transactionsTable = page.locator('#all_transactions_for_account tbody tr');
         this.noResultsMessage = page.locator('.well');

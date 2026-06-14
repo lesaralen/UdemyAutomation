@@ -1,10 +1,10 @@
-import {expect, Locator, Page} from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
+import { AbstractPage } from './AbstractPage';
 
 
-
-export class HomePage {
+export class HomePage extends AbstractPage {
 //Define selectors
-readonly page: Page;
+//readonly page: Page;
 readonly searchBox: Locator;
 readonly signInButton: Locator;
 readonly feedbackLink: Locator;
@@ -13,7 +13,8 @@ readonly feedbackLink: Locator;
 
 //Init selectors using constructor
 constructor(page: Page) {
-    this.page = page;
+    //this.page = page;
+    super(page);
     this.searchBox = page.getByRole('textbox', { name: 'Search' });
     this.signInButton = page.getByRole('button', { name: 'Signin' });
     this.feedbackLink = page.locator('#feedback');

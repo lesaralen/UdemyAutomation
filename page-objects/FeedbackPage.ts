@@ -1,7 +1,8 @@
 import {expect, Locator, Page} from '@playwright/test';
+import { AbstractPage } from './AbstractPage';
 
-export class FeedbackPage {
-    readonly page: Page;
+export class FeedbackPage extends AbstractPage {
+    //readonly page: Page;
     readonly nameInput: Locator;
     readonly emailInput: Locator;
     readonly subjectInput: Locator;
@@ -11,7 +12,8 @@ export class FeedbackPage {
     readonly feedbackMessage: Locator;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
+        //this.page = page;
         this.nameInput = page.getByRole('textbox', { name: 'Your Name' });
         this.emailInput = page.getByRole('textbox', { name: 'Your email address' });
         this.subjectInput = page.getByRole('textbox', { name: 'Subject' });

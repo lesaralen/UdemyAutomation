@@ -1,4 +1,4 @@
-import  { test, expect, Page } from '@playwright/test';
+import  { test, expect } from '@playwright/test';
 import { HomePage } from '../../page-objects/HomePage';
 
 test.describe('Zero Web App Search Tests', () => {

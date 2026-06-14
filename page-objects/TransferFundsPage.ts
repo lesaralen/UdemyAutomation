@@ -1,8 +1,9 @@
 import {expect, Locator, Page} from '@playwright/test';
+import { AbstractPage } from './AbstractPage';
 
 
-export class TransferFundsPage {
-    readonly page: Page;
+export class TransferFundsPage extends AbstractPage {
+    //readonly page: Page;
     readonly fromAccountSelect: Locator;
     readonly toAccountSelect: Locator;
     readonly amountInput: Locator;
@@ -13,7 +14,8 @@ export class TransferFundsPage {
     readonly successMessage: Locator;
 
     constructor(page: Page) {
-        this.page = page;
+        super(page);
+        //this.page = page;
         this.fromAccountSelect = page.getByRole('combobox', { name: 'From account' });
         this.toAccountSelect = page.getByRole('combobox', { name: 'To account' });
         this.amountInput = page.getByRole('textbox', { name: 'Amount' });

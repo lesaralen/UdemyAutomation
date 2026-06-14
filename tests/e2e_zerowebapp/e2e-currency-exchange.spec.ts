@@ -1,4 +1,4 @@
-import { test , expect } from '@playwright/test'
+import { test  } from '@playwright/test'
 import { HomePage } from '../../page-objects/HomePage';
 import { LoginPage } from '../../page-objects/LoginPage';
 import { PayBillsNavbar } from '../../page-objects/components/PayBillsNavbar';
@@ -6,7 +6,7 @@ import { PaymentPage } from '../../page-objects/PaymentPage';
 
 
 
-test.describe.parallel.only('Currency Exchange', () => {
+test.describe.parallel('Currency Exchange', () => {
 
     let homePage: HomePage;
     let loginPage: LoginPage;

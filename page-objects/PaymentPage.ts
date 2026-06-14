@@ -1,7 +1,8 @@
 import {expect, Locator, Page} from '@playwright/test';
+import { AbstractPage } from './AbstractPage';
 
-export class PaymentPage {
-    readonly page: Page;
+export class PaymentPage extends AbstractPage {
+    //readonly page: Page;
 
     // Locators for Pay Saved Payee section
     readonly payeeSelect: Locator;
@@ -32,7 +33,9 @@ export class PaymentPage {
      
     
     constructor(page: Page) {
-        this.page = page;
+        //this.page = page;
+        super(page);
+        
 
         // Pay Saved Payee locators
         this.payeeSelect = page.getByRole('combobox', { name: 'Payee' });

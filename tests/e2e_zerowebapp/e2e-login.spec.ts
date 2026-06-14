@@ -25,7 +25,7 @@ test.describe.parallel('Zero Web App Login Tests', () => {
     test('Positive Login + Logout', async ({ page }) => {
         await homePage.clickSignIn();
         await loginPage.login('username', 'password');  
-        await page.waitForTimeout(1000);
+        await loginPage.wait(1000);
         await page.goto('http://zero.webappsecurity.com/bank/transfer-funds.html');
 
         await page.locator('.icon-user').click();
