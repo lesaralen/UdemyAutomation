@@ -20,9 +20,9 @@ test.describe('Pay Bills', () => {
     
         await homePage.visit();
         await homePage.clickSignIn();
-        await loginPage.login('username', 'password');
+        await loginPage.login('username', 'password')
 
-        await page.waitForTimeout(1000);
+        await loginPage.wait(1000);
         await page.goto('http://zero.webappsecurity.com/bank/pay-bills.html');
     })
 
@@ -40,6 +40,8 @@ test.describe('Pay Bills', () => {
 
     //     await navbar.clickOnTab('Account Summary');
     //     await page.waitForTimeout (10000);
-    // })
+    // 
+
+
 
 })

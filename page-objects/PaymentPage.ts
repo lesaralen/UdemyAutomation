@@ -1,8 +1,10 @@
 import {expect, Locator, Page} from '@playwright/test';
 import { AbstractPage } from './AbstractPage';
 
-export class PaymentPage extends AbstractPage {
+
+export class PaymentPage extends AbstractPage{
     //readonly page: Page;
+
 
     // Locators for Pay Saved Payee section
     readonly payeeSelect: Locator;
@@ -15,8 +17,8 @@ export class PaymentPage extends AbstractPage {
     readonly payButton: Locator;
     readonly successMessage: Locator;
 
-    // Locators for Add New Payee 
-
+    // Locators for Add New Payee
+    
     // Locators for Purchase Foreign Currency 
     readonly currencySelect: Locator;
     readonly sellRate: Locator;
@@ -35,7 +37,6 @@ export class PaymentPage extends AbstractPage {
     constructor(page: Page) {
         //this.page = page;
         super(page);
-        
 
         // Pay Saved Payee locators
         this.payeeSelect = page.getByRole('combobox', { name: 'Payee' });
@@ -49,6 +50,8 @@ export class PaymentPage extends AbstractPage {
         this.successMessage = page.locator('#alert_content span');
 
         // Add New Payee locators
+    
+
 
         // Purchase Foreign Currency locators
         this.currencySelect = page.getByRole('combobox', { name: 'Currency' });
@@ -81,6 +84,7 @@ export class PaymentPage extends AbstractPage {
     }
 
     // Methods for Add New Payee section
+    
 
     // Methods for Purchase Foreign Currency section
 async purchaseCurrency(currency: string, amount: string, mode: 'selected' | 'usd') {
@@ -108,7 +112,7 @@ async purchaseCurrency(currency: string, amount: string, mode: 'selected' | 'usd
     await this.purchaseButton.click();
     }
 
-
+    
     async getPurchaseSuccessMessage() {
         const purchaseSuccessMessage = this.purchaseSuccessMessage;
         await expect(purchaseSuccessMessage).toBeVisible();
